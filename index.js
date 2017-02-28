@@ -8,12 +8,23 @@ app.get('/', function(req, res){
 });
 
 io.on('connection', function(socket){
-	console.log('a user connected');
+	
+	io.emit('chat message', 'User connected');
 	socket.on('disconnect', function(){
 		console.log('user disonnected');
+		io.emit('user disconnected');
 	});
+	
+	socket.on('chat message', function(msg){
+	io.emit('chat message', msg);
+	});
+	
+	socket.on('disconnect', function(){
+		io.emit('chat message', 'User Disconnected');
+	});
+	
 });
-
+/*
 io.on('connection', function(socket){
 	socket.on('chat message', function(msg){
 	io.emit('chat message', msg);
@@ -28,7 +39,7 @@ io.on('connection', function(socket){
 	});
 });
 
-
+*/
 
 http.listen(3000,function(){
 	console.log('listening on *:3000');
