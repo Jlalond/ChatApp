@@ -24,22 +24,7 @@ io.on('connection', function(socket){
 	});
 	
 });
-/*
-io.on('connection', function(socket){
-	socket.on('chat message', function(msg){
-	io.emit('chat message', msg);
-	});
-	
-});
 
-io.on('connection', function(socket){
-	io.emit('chat message', 'User connected');
-	socket.on('disconnect', function(){
-		io.emit('chat message', 'User Disconnected');
-	});
-});
-
-*/
 
 http.listen(3000,function(){
 	console.log('listening on *:3000');
